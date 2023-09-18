@@ -1,25 +1,3 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import theImage from './logo.png'
-
-const Header = () => {
-  return (
-    <div className='header'>
-      <div className='logo-container'>
-        <img className='logo' src={theImage} alt='' />
-      </div>
-      <div className='nav-items'>
-        <ul>
-          <li>Home</li>
-          <li>About Us</li>
-          <li>Contact Us</li>
-          <li>Cart</li>
-        </ul>
-      </div>
-    </div>
-  )
-}
-
 const resList = [
   {
     info: {
@@ -1639,57 +1617,4 @@ const resList = [
   },
 ]
 
-const RestroCard = (props) => {
-  const { resData } = props
-
-  const { cloudinaryImageId, name, cuisines, avgRating, costForTwo } =
-    resData?.info
-
-  return (
-    <div className='res-card'>
-      <img
-        className='res-logo'
-        src={
-          'https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/' +
-          cloudinaryImageId
-        }
-        alt='res-logo'
-      />
-      <h4>{name}</h4>
-      <h4>{cuisines.join(', ')}</h4>
-      <h4>{avgRating} Avg Rating</h4>
-      <h4>{costForTwo}</h4>
-    </div>
-  )
-}
-
-const Body = () => {
-  return (
-    <div className='body'>
-      <div className='search'>
-        <input type='text' placeholder='Search' />
-        <button>Search</button>
-        <button>Clear</button>
-      </div>
-      <div className='res-container'>
-        {resList.map((restaurant) => (
-          <RestroCard key={restaurant.info.id} resData={restaurant} />
-        ))}
-      </div>
-    </div>
-  )
-}
-
-const AppLayout = () => {
-  //a big app layout for all app
-  return (
-    <div className='app'>
-      <Header />
-      <Body />
-    </div>
-  )
-}
-
-const root = ReactDOM.createRoot(document.getElementById('root'))
-
-root.render(<AppLayout />)
+export default resList
