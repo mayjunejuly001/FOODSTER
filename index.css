@@ -27,7 +27,7 @@
   border-radius: 10px;
   padding: 10px;
   margin: 20px;
-  background-color: lightyellow;
+  background-color: lightgray;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   cursor: pointer;
   position: relative;
@@ -56,8 +56,35 @@
   margin-bottom: -20px;
 }
 
-.filter-btn{
-  margin: 10px;;
+.filter-btn {
+  margin: 10px;
   cursor: pointer;
+}
 
+.shimmer-card {
+  width: 200px;
+  height: 400px;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 20px;
+  background-color: lightgray;
+  position: relative;
+  color: black;
+  align-items: center;
+}
+
+.shimmer-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+.btn {
+  padding: 0px 20px;
+}
+
+.filter {
+  display: flex;
+}
+
+.search-box{
+  margin: 10px 0px;
 }
