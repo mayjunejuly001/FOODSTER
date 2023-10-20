@@ -1,12 +1,13 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
 const User = ({Name,Location,About}) => {
- const[coutn,setCount] = useState(0)
- const[count2] = useState(1)
 
- useEffect(()=>{
-  //API CALL
- },[])
+const User = ({Name}) => {
+ const[count,setcount] = useState(0)
+ const[count2] = useState(1)
+}
+
+
 
  return(
   <div className="user-card">
