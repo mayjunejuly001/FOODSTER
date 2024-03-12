@@ -7,13 +7,13 @@ const RestroCard = (props) => {
     resData?.info
 
   return (
-    <div className='res-card'>
+    <div className='m-4 p-4 w-[250px] bg-yellow-100  rounded-lg hover:bg-yellow-400 '>
       <img
-        className='res-logo'
+        className=' rounded-lg'
         src={CDN_URL + cloudinaryImageId} 
         alt='res-logo'
       />
-      <h4>{name}</h4>
+      <h4 className='font-bold py-2 text-lg'>{name}</h4>
       <h4>{cuisines.join(', ')}</h4>
       <h4>{avgRating} Avg Rating</h4>
       <h4>{costForTwo}</h4>

@@ -1,26 +1,34 @@
 import theImage from '../../logo.png'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import useOnlineStatus from '../Utils/useOnlineStatus'
 
 const Header = () => {
   const [btnName, setbtnName] = useState('Login')
+  const onlineStatus = useOnlineStatus()
   return (
-    <div className='header'>
+    <div className='flex justify-between bg-yellow-200 shadow-lg'>
       <div className='logo-container'>
-        <img className='logo' src={theImage} alt='' />
+        <img className='w-40' src={theImage} alt='' />
       </div>
-      <div className='nav-items'>
-        <ul>
-          <li>
-            <Link to= {'/'}>Home</Link>
+      <div className='flex items-center'>
+        <ul className='flex p=4 m-4'>
+          <li className=' px-4 '>
+            Online Status: {onlineStatus ? "✅" : "🔴"}
           </li>
-          <li>
+          <li className=' px-4' >
+            <Link to={'/'}>Home</Link>
+          </li>
+          <li className=' px-4'>
             <Link to={'/about'}>About Us</Link>
           </li>
-          <li>
+          <li className=' px-4'>
             <Link to={'/contact'}>Contact Us</Link>
           </li>
-          <li>Cart</li>
+          <li className=' px-4'>
+            <Link to={'/grocery'}>Grocery</Link>
+          </li>
+          <li className=' px-4'>Cart</li>
           <button
             className='btn'
             onClick={() => {
@@ -31,7 +39,7 @@ const Header = () => {
           </button>
         </ul>
       </div>
-    </div>
+    </div >
   )
 }
 
