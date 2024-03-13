@@ -1,14 +1,20 @@
-import RestroCard from './RestroCard'
-import { useEffect, useState } from 'react'
+import RestroCard, { withPromotedLabel } from './RestroCard'
+import { useEffect, useState, useContext } from 'react'
 import { ShimmerUI } from './ShimmerUI.JS'
 import { Link } from 'react-router-dom'
 import useOnlineStatus from '../Utils/useOnlineStatus'
+import UserContext from '../Utils/UserContext'
 
 const Body = () => {
   //local state variable-super powerful variable
   const [listofrestaurants, setlistofRestaurants] = useState([])
   const [filteredRestaurant, setFilteredRestaurant] = useState([])
   const [searchText, setsearchText] = useState('')
+
+  // console.log(listofrestaurants)
+
+  const RestaurantCardPromoted = withPromotedLabel(RestroCard)
+
   useEffect(() => {
     fetchData()
   }, [])
@@ -32,15 +38,16 @@ const Body = () => {
       <h1>
         Looks like you're offline!! Please check your internet connection;
       </h1>
-    ); ``
+    )
 
+  const { setUserName , loggedInUser } = useContext(UserContext)
 
   return !listofrestaurants || listofrestaurants.length === 0 ? (
     <ShimmerUI />
   ) : (
     <div className='body'>
       <div className=' flex '>
-        <div className='search  p-0 '>
+        <div className='m-4 p-4 flex items-center'>
           <input
             type='text'
             className='border border-solid border-black'
@@ -49,7 +56,8 @@ const Body = () => {
               setsearchText(e.target.value)
             }}
           />
-          <button className='px-4 py-2 bg-yellow-50 m-4 rounded-lg '
+          <button
+            className='px-4 py-2 bg-yellow-50 m-4 rounded-lg '
             onClick={() => {
               const filteredRestaurant = listofrestaurants.filter((res) =>
                 res.info.name.toLowerCase().includes(searchText.toLowerCase())
@@ -60,8 +68,8 @@ const Body = () => {
           >
             Search
           </button>
-        </div >
-        <div >
+        </div>
+        <div className='m-4 p-4 flex items-center'>
           <button
             className='px-4 py-2 bg-yellow-50 m-4 rounded-lg'
             onClick={() => {
@@ -76,7 +84,14 @@ const Body = () => {
             Top Rated Restaurants
           </button>
         </div>
-
+        <div className='m-4 p-4 flex items-center'>
+          <label>Username:</label>
+          <input
+            className='border border-black p-2'
+            value={loggedInUser}
+            onChange={(e) => setUserName(e.target.value)}
+          />
+        </div>
       </div>
       <div className='flex flex-wrap'>
         {filteredRestaurant.map((restaurant) => (
@@ -84,7 +99,14 @@ const Body = () => {
             key={restaurant.info.id}
             to={'/restaurants/' + restaurant.info.id}
           >
-            <RestroCard key={restaurant.info.id} resData={restaurant} />
+            {restaurant.info.avgRating < 4.3 ? (
+              <RestaurantCardPromoted
+                key={restaurant.info.id}
+                resData={restaurant}
+              />
+            ) : (
+              <RestroCard key={restaurant.info.id} resData={restaurant} />
+            )}
           </Link>
         ))}
       </div>
