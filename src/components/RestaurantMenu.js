@@ -1,8 +1,9 @@
-import { ShimmerUI } from './ShimmerUI.JS'
+
 import { useParams } from 'react-router-dom'
 import useRestaurantMenu from '../Utils/useRestaurantMenu'
 import RestaurantCatogory from './RestaurantCategory'
 import { useState } from 'react'
+import ShimmerUI from './ShimmerUI'
 
 const RestaurantMenu = () => {
   const { resId } = useParams()
