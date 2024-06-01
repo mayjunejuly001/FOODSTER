@@ -1,9 +1,9 @@
 import RestroCard, { withPromotedLabel } from './RestroCard'
 import { useEffect, useState, useContext } from 'react'
-import { ShimmerUI } from './ShimmerUI.JS'
 import { Link } from 'react-router-dom'
 import useOnlineStatus from '../Utils/useOnlineStatus'
 import UserContext from '../Utils/UserContext'
+import ShimmerUI from './ShimmerUI'
 
 const Body = () => {
   //local state variable-super powerful variable
@@ -43,7 +43,7 @@ const Body = () => {
   const { setUserName , loggedInUser } = useContext(UserContext)
 
   return !listofrestaurants || listofrestaurants.length === 0 ? (
-    <ShimmerUI />
+    <ShimmerUI/>
   ) : (
     <div className='body'>
       <div className=' flex '>
